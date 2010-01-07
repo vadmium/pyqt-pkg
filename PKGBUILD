@@ -1,12 +1,12 @@
 # $Id$
-# Maintainer: Douglas Soares de Andrade <douglas@archlinux.org>
-# Contributor: Andrea Scarpino <andrea@archlinux.org>
+# Maintainer: Andrea Scarpino <andrea@archlinux.org>
+# Contributor: Douglas Soares de Andrade <douglas@archlinux.org>
 # Contributor: riai <riai@bigfoot.com> Ben <ben@benmazer.net>
 
 pkgname=pyqt
 pkgver=4.6.2
 pkgrel=2
-pkgdesc="A set of Python bindings for the Qt toolkit."
+pkgdesc="A set of Python bindings for the Qt toolkit"
 arch=('i686' 'x86_64')
 url="http://riverbankcomputing.co.uk/software/pyqt/intro"
 depends=('sip>=4.9.3' 'qscintilla>=2.4.1' 'qt>=4.6.0' 'dbus-python' 'openssl')
