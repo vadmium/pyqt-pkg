@@ -10,7 +10,7 @@ pkgrel=1
 pkgdesc="A set of Python bindings for the Qt toolkit"
 arch=('i686' 'x86_64')
 url="http://riverbankcomputing.co.uk/software/pyqt/intro"
-depends=('sip>=4.10' 'qscintilla>=2.4.1' 'qt>=4.6.0' 'dbus-python' 'openssl')
+depends=('sip>=4.10' 'qscintilla>=2.4.1' 'dbus-python' 'openssl')
 license=('GPL')
 provides=('pyqt4')
 replaces=('pyqt4')
