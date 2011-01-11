@@ -3,22 +3,22 @@
 # Contributor: Douglas Soares de Andrade <douglas@archlinux.org>
 # Contributor: riai <riai@bigfoot.com> Ben <ben@benmazer.net>
 
-pkgname=pyqt
+pkgname=python2-qt
 pkgver=4.8.2
-pkgrel=2
+pkgrel=1
 pkgdesc="A set of Python bindings for the Qt toolkit"
 arch=('i686' 'x86_64')
 url="http://riverbankcomputing.co.uk/software/pyqt/intro"
 license=('GPL')
-depends=('sip' 'qt' 'dbus-python')
+depends=('python2-sip' 'qt' 'dbus-python')
 makedepends=('phonon' 'python-opengl' 'qt-assistant-compat')
 optdepends=('phonon: enable audio and video in PyQt applications'
 	'python-opengl: enable OpenGL 3D graphics in PyQt applications'
 	'qscintilla: QScintilla API'
 	'qt-assistant-compat: add PyQt online help in Qt Assistant')
-provides=('pyqt4')
-replaces=('pyqt4')
-conflicts=('pyqt4')
+provides=('pyqt4' "pyqt=${pkgver}")
+replaces=('pyqt4' 'pyqt')
+conflicts=('pyqt4' 'pyqt')
 source=("http://riverbankcomputing.co.uk/static/Downloads/PyQt4/PyQt-x11-gpl-${pkgver}.tar.gz"
         'fix-stackedwidget-bug.patch')
 md5sums=('142a32f126f205a2bd77f6a9910f5333'
