@@ -1,19 +1,14 @@
 # $Id$
 # Maintainer: Andrea Scarpino <andrea@archlinux.org>
 
-pkgname=python-qt
+pkgbase=pyqt
+pkgname=('pyqt' 'python-qt')
 pkgver=4.8.2
-pkgrel=1
-pkgdesc="A set of Python bindings for the Qt toolkit"
+pkgrel=2
 arch=('i686' 'x86_64')
 url="http://riverbankcomputing.co.uk/software/pyqt/intro"
 license=('GPL')
-depends=('python-sip' 'qt')
-makedepends=('phonon' 'qt-assistant-compat')
-optdepends=('phonon: enable audio and video in PyQt applications'
-	'qscintilla: QScintilla API'
-	'qt-assistant-compat: add PyQt online help in Qt Assistant')
-conflicts=('python2-qt')
+makedepends=('python-sip' 'qt' 'phonon' 'qt-assistant-compat')
 source=("http://riverbankcomputing.co.uk/static/Downloads/PyQt4/PyQt-x11-gpl-${pkgver}.tar.gz"
         'fix-stackedwidget-bug.patch')
 md5sums=('142a32f126f205a2bd77f6a9910f5333'
@@ -27,7 +22,6 @@ build() {
 
   python configure.py \
     --confirm-license \
-    -v /usr/share/sip \
     --qsci-api
 
   # Thanks Gerardo for the rpath fix
@@ -36,8 +30,26 @@ build() {
   make
 }
 
-package(){
+package_pyqt(){
+  depends=""
+  pkgdesc="Python bindings common files"
+
+  cd ${srcdir}/PyQt-x11-gpl-${pkgver}
+}
+
+package_python-qt(){
+  pkgdesc="A set of Python 3 bindings for the Qt toolkit"
+  depends=('pyqt' 'python-sip' 'qt')
+  optdepends=('phonon: enable audio and video in PyQt applications'
+	'qscintilla: QScintilla API'
+	'qt-assistant-compat: add PyQt online help in Qt Assistant')
+
   cd ${srcdir}/PyQt-x11-gpl-${pkgver}
   # INSTALL_ROOT is needed for the QtDesigner module, the other Makefiles use DESTDIR
   make DESTDIR="${pkgdir}" INSTALL_ROOT="${pkgdir}" install
+
+  # Provided by pyqt package
+  rm ${pkgdir}/usr/bin/{pylupdate4,pyrcc4,pyuic4}
+  rm ${pkgdir}/usr/lib/qt/plugins/designer/libpythonplugin.so
+  rm ${pkgdir}/usr/share/qt/qsci/api/python/PyQt4.api
 }
